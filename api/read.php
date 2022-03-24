@@ -3,7 +3,7 @@
  header("Content-Type: application/json; charset=UTF-8");
  
  include_once '../config/database.php';
- include_once '../employees.php';
+ include_once '../models/employees.php';
 
  $database = new Database();
 
