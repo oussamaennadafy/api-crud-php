@@ -1,6 +1,8 @@
 <?php
+
 class Employee{
-// dbection
+ 
+// db connection
 private $db;
 // Table
 private $db_table = "employee";
@@ -32,11 +34,14 @@ $this->name=htmlspecialchars(strip_tags($this->name));
 $this->email=htmlspecialchars(strip_tags($this->email));
 $this->designation=htmlspecialchars(strip_tags($this->designation));
 $this->created=htmlspecialchars(strip_tags($this->created));
+
 $sqlQuery = "INSERT INTO
 ". $this->db_table ." SET name = '".$this->name."',
 email = '".$this->email."',
 designation = '".$this->designation."',created = '".$this->created."'";
+
 $this->db->query($sqlQuery);
+
 if($this->db->affected_rows > 0){
 return true;
 }
@@ -57,6 +62,7 @@ $this->created = $dataRow['created'];
 
 // UPDATE
 public function updateEmployee(){
+
 $this->name=htmlspecialchars(strip_tags($this->name));
 $this->email=htmlspecialchars(strip_tags($this->email));
 $this->designation=htmlspecialchars(strip_tags($this->designation));
@@ -77,6 +83,7 @@ return false;
 
 // DELETE
 function deleteEmployee(){
+
  $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE id = ".$this->id;
  $this->db->query($sqlQuery);
 

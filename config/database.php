@@ -1,7 +1,7 @@
 <?php
  class Database {
   public $db;
-  public function __construct()
+  public function getConnection()
   {
   $this->db = null;
   try
@@ -12,8 +12,8 @@
    echo "Database could not be connected: " . $e->getMessage();
 
    }
-
-   return $this->db;
+   
+    return $this->db;
   }
   }
 ?>
