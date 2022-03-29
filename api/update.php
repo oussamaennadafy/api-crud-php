@@ -6,19 +6,27 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once '../config/database.php';
-include_once '../models/employees.php';
+include_once '../models/users.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$item = new Employee($db);
+$item = new User($db);
 
-$item->id = isset($_GET['id']) ? $_GET['id'] : die();
-$item->name = $_GET['name'];
-$item->email = $_GET['email'];
-$item->designation = $_GET['designation'];
-$item->created = date('Y-m-d H:i:s');
-if($item->updateEmployee()){
-echo json_encode("Employee data updated.");
+
+
+
+$item->id = isset($_GET['id']) ? $_GET['id'] : die('please entre the id');
+
+
+ $item->first_name = $_GET['first_name'];
+ $item->last_name = $_GET['last_name'];
+ $item->age = $_GET['age'];
+ $item->birth = $_GET['birth'];
+
+
+
+if($item->updateuser()){
+echo json_encode("user data updated.");
 } else{
 echo json_encode("Data could not be updated");
 }

@@ -7,17 +7,17 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 
 include_once '../config/database.php';
-include_once '../models/employees.php';
+include_once '../models/users.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$item = new Employee($db);
+$item = new User($db);
 
-$item->id = isset($_GET['id']) ? $_GET['id'] : die();
+$item->id = isset($_GET['id']) ? $_GET['id'] : die('please entre the id');
 
-if($item->deleteEmployee()){
-echo json_encode("Employee deleted.");
+if($item->deleteuser()){
+echo json_encode("user deleted.");
 } else{
-echo json_encode("Data could not be deleted");
+echo json_encode("user not found");
 }
 ?>

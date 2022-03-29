@@ -6,7 +6,7 @@
   $this->db = null;
   try
    {
-    $this->db = new mysqli('localhost','root','','apicruddb');
+    $this->db = new mysqli('localhost','root','','dental_clinic');
    } catch(Exception $e) {
 
    echo "Database could not be connected: " . $e->getMessage();

@@ -3,24 +3,28 @@
  header("Content-Type: application/json; charset=UTF-8");
  
  include_once '../config/database.php';
- include_once '../models/employees.php';
+ include_once '../models/users.php';
 
  $database = new Database();
 
  $db = $database->getConnection();
- $items = new Employee($db);
- $records = $items->getEmployees();
+
+ $items = new User($db);
+
+ $records = $items->getusers();
+
  $itemCount = $records->num_rows;
+ 
  echo json_encode($itemCount);
  if($itemCount > 0){
-  $employeeArr = array();
-  $employeeArr["body"] = array();
-  $employeeArr["itemCount"] = $itemCount;
+  $userArr = array();
+  $userArr["body"] = array();
+  $userArr["itemCount"] = $itemCount;
  while ($row = $records->fetch_assoc())
  {
-  array_push($employeeArr["body"], $row);
+  array_push($userArr["body"], $row);
  }
- echo json_encode($employeeArr);
+ echo json_encode($userArr);
  }
  else{
   http_response_code(404);

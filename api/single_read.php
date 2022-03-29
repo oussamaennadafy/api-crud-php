@@ -6,29 +6,30 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once '../config/database.php';
-include_once '../models/employees.php';
+include_once '../models/users.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$item = new Employee($db);
-$item->id = isset($_GET['id']) ? $_GET['id'] : die();
-$item->getSingleEmployee();
-if($item->name != null){
+$item = new User($db);
+$item->id = isset($_GET['id']) ? $_GET['id'] : die('please entre the id');
+$item->getSingleuser();
+if($db->affected_rows > 0){
 
 // create array
 $emp_arr = array(
 "id" => $item->id,
-"name" => $item->name,
-"email" => $item->email,
-"designation" => $item->designation,
-"created" => $item->created
+"first_name" => $item->first_name,
+"last_name" => $item->last_name,
+"age" => $item->age,
+"birth" => $item->birth
 );
 
 http_response_code(200);
+echo'we found the user : ';
 echo json_encode($emp_arr);
 }
 else{
 http_response_code(404);
-echo json_encode("Employee not found.");
+echo json_encode("user not found");
 }
 ?>

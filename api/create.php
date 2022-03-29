@@ -7,21 +7,23 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 
 include_once '../config/database.php';
-include_once '../models/employees.php';
+include_once '../models/users.php';
 
- $database = new Database();
- $db = $database->getConnection();
- $item = new Employee($db);
+$database = new Database();
+$db = $database->getConnection();
+$user = new user($db);
+
+if(!empty($_GET['first_name']) && !empty($_GET['last_name']) && !empty($_GET['age']) && !empty($_GET['birth'])) {
+ $user->first_name = $_GET['first_name'];
+ $user->last_name = $_GET['last_name'];
+ $user->age = $_GET['age'];
+ $user->birth = $_GET['birth'];
+}
 
 
- $item->name = $_GET['name'];
- $item->email = $_GET['email'];
- $item->designation = $_GET['designation'];
- $item->created = date('Y-m-d H:i:s');
-
- if($item->createEmployee()){
- echo 'Employee created successfully.';
- } else{
- echo 'Employee could not be created.';
- }
+if($user->createUser()){
+echo 'user created successfully.';
+} else{
+echo 'user could not be created.';
+}
 ?>
