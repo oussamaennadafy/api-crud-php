@@ -22,8 +22,8 @@ if(!empty($_GET['first_name']) && !empty($_GET['last_name']) && !empty($_GET['ag
 
 
 if($user->createUser()){
-echo 'user created successfully.';
+echo 'user created successfully ';
 } else{
-echo 'user could not be created.';
+echo 'user could not be created ';
 }
 ?>
